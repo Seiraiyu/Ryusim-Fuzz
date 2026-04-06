@@ -1,0 +1,4 @@
+cocotb @ git+https://github.com/Seiraiyu/cocotb.git@feat/ryusim-simulator-support
+jinja2
+pyyaml
+vcdvcd

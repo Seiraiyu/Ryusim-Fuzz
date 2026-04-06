@@ -1,0 +1,21 @@
+# RyuSim-Fuzz/.gitignore
+__pycache__/
+*.pyc
+*.egg-info/
+.eggs/
+*.so
+*.o
+obj_dir/
+sim_build/
+*.vcd
+*.xml
+build/
+
+# Generated designs (ephemeral)
+generated/
+
+# Results are CI artifacts, not committed
+results/*.json
+
+# Findings are committed (they're the whole point)
+!findings/
