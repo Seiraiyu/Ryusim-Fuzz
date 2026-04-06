@@ -1,6 +1,8 @@
 {
   "name": "RyuSim-Fuzz",
-  "image": "ghcr.io/seiraiyu/ryusim-fuzz:latest",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "postCreateCommand": "bash scripts/setup_chimera.sh && bash scripts/setup_vloghammer.sh",
   "customizations": {
     "vscode": {
