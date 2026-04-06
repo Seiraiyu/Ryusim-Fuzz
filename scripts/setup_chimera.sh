@@ -13,6 +13,14 @@ fi
 
 echo "Building ChiGen from $CHIMERA_DIR..."
 cd "$CHIMERA_DIR"
+# Clean stale CMake cache if source dir changed (e.g. local vs container paths)
+if [ -f build/CMakeCache.txt ]; then
+    cached_dir=$(grep "CMAKE_CACHEFILE_DIR:INTERNAL" build/CMakeCache.txt 2>/dev/null | cut -d= -f2)
+    if [ -n "$cached_dir" ] && [ "$cached_dir" != "$CHIMERA_DIR/build" ]; then
+        echo "Stale CMake cache detected, cleaning build directory..."
+        rm -rf build/
+    fi
+fi
 cmake -S src -B build/ -DCMAKE_BUILD_TYPE=Release
 make -j"$(nproc)" -C build/
 
