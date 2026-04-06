@@ -24,40 +24,22 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Run in devcontainer
+        uses: devcontainers/ci@v0.3
         with:
-          python-version: "3.11"
-
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake clang g++ verilator iverilog
-
-      - name: Install RyuSim
-        run: bash scripts/setup_ryusim.sh
-
-      - name: Build ChiGen
-        run: bash scripts/setup_chimera.sh
-
-      - name: Build VlogHammer generator
-        run: bash scripts/setup_vloghammer.sh
-
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run fuzzing
-        run: |
-          SEED_ARG=""
-          if [ -n "${{ inputs.seed }}" ]; then
-            SEED_ARG="--seed ${{ inputs.seed }}"
-          fi
-          python3 -u run_fuzz.py --all \
-            --count ${{ inputs.count || 100 }} \
-            $SEED_ARG \
-            --file-issues \
-            --verbose \
-            --output results/fuzz-nightly.json
+          runCmd: |
+            bash scripts/setup_chimera.sh
+            bash scripts/setup_vloghammer.sh
+            SEED_ARG=""
+            if [ -n "${{ inputs.seed }}" ]; then
+              SEED_ARG="--seed ${{ inputs.seed }}"
+            fi
+            python3 -u run_fuzz.py --all \
+              --count ${{ inputs.count || 100 }} \
+              $SEED_ARG \
+              --file-issues \
+              --verbose \
+              --output results/fuzz-nightly.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -106,13 +106,11 @@ def _run_sim(
         "COCOTB_REDUCED_LOG_FMT": "1",
     }
     # Enable VCD tracing
+    env_vars["WAVES"] = "1"
     if sim == "ryusim":
         env_vars["EXTRA_ARGS"] = "--trace-vcd"
     elif sim == "verilator":
         env_vars["EXTRA_ARGS"] = "--trace"
-    elif sim == "icarus":
-        env_vars["SIM"] = "icarus"
-        # Icarus VCD via cocotb or $dumpvars in testbench
 
     try:
         result = subprocess.run(
@@ -147,8 +145,22 @@ def _run_sim(
 
     duration = time.perf_counter() - start
 
-    # Find VCD output
+    # Find VCD output (cocotb+icarus may produce FST instead of VCD)
     vcd_files = list(work_dir.rglob("*.vcd"))
+    if not vcd_files:
+        fst_files = list(work_dir.rglob("*.fst"))
+        if fst_files:
+            vcd_converted = fst_files[0].with_suffix(".vcd")
+            try:
+                subprocess.run(
+                    ["fst2vcd", str(fst_files[0]), "-o", str(vcd_converted)],
+                    capture_output=True,
+                    timeout=30,
+                )
+                if vcd_converted.exists():
+                    vcd_files = [vcd_converted]
+            except (FileNotFoundError, subprocess.TimeoutExpired):
+                log.debug("fst2vcd not available, cannot convert %s", fst_files[0])
     vcd_path = vcd_files[0] if vcd_files else None
 
     return SimResult(

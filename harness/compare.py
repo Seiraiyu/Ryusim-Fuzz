@@ -2,9 +2,10 @@
 """harness/compare.py — Compare simulation results across simulators."""
 
 import logging
-import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
+
+from vcdvcd import VCDVCD
 
 from harness.simulate import SimResult
 
@@ -32,21 +33,44 @@ class CompareResult:
 
 
 def _run_vcddiff(vcd_a: Path, vcd_b: Path, timeout: int = 30) -> tuple[bool, str]:
-    """Run vcddiff between two VCD files. Returns (match, diff_output)."""
+    """Compare two VCD files using vcdvcd library. Returns (match, diff_output)."""
     try:
-        result = subprocess.run(
-            ["vcddiff", str(vcd_a), str(vcd_b)],
-            capture_output=True,
-            text=True,
-            timeout=timeout,
-        )
-        match = result.returncode == 0
-        output = result.stdout + result.stderr
-        return match, output
-    except FileNotFoundError:
-        return False, "vcddiff not found on PATH"
-    except subprocess.TimeoutExpired:
-        return False, f"vcddiff timed out after {timeout}s"
+        a = VCDVCD(str(vcd_a))
+        b = VCDVCD(str(vcd_b))
+    except Exception as e:
+        return False, f"VCD parse error: {e}"
+
+    diffs = []
+    a_signals = set(a.signals)
+    b_signals = set(b.signals)
+
+    # Compare signal names (ignoring scope prefixes — just use leaf names)
+    a_leaf = {s.split(".")[-1]: s for s in a_signals}
+    b_leaf = {s.split(".")[-1]: s for s in b_signals}
+
+    common_leaves = set(a_leaf.keys()) & set(b_leaf.keys())
+    if not common_leaves:
+        return False, f"No common signals: A has {sorted(a_leaf.keys())[:5]}, B has {sorted(b_leaf.keys())[:5]}"
+
+    for leaf in sorted(common_leaves):
+        a_sig = a[a_leaf[leaf]]
+        b_sig = b[b_leaf[leaf]]
+        a_tv = a_sig.tv
+        b_tv = b_sig.tv
+
+        if a_tv != b_tv:
+            # Find first difference
+            max_len = max(len(a_tv), len(b_tv))
+            for i in range(max_len):
+                a_val = a_tv[i] if i < len(a_tv) else "(end)"
+                b_val = b_tv[i] if i < len(b_tv) else "(end)"
+                if a_val != b_val:
+                    diffs.append(f"{leaf}: first diff at index {i}: {a_val} vs {b_val}")
+                    break
+
+    if diffs:
+        return False, "\n".join(diffs[:20])
+    return True, "All common signals match"
 
 
 def _sim_ok(r: SimResult) -> bool:

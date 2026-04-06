@@ -13,4 +13,4 @@ async def test_generated(dut):
 {% for port in input_ports %}
         dut.{{ port.name }}.value = random.randint(0, {{ port.max_val }})
 {% endfor %}
-        await Timer(10, units="ns")
+        await Timer(10, unit="ns")

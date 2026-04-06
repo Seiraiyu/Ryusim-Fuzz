@@ -10,7 +10,7 @@ random.seed({{ random_seed }})
 @cocotb.test()
 async def test_generated(dut):
     """Drive clock + random stimulus for {{ num_cycles }} cycles."""
-    clock = Clock(dut.{{ clock_port }}, 10, units="ns")
+    clock = Clock(dut.{{ clock_port }}, 10, unit="ns")
     cocotb.start_soon(clock.start())
 
 {% for port in input_ports %}

@@ -24,10 +24,11 @@ GENERATORS = ["chimera", "vloghammer"]
 
 
 def get_tool_version(cmd: list[str]) -> str:
-    """Get version string from a tool."""
+    """Get version string from a tool (first line only)."""
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
-        return result.stdout.strip() or result.stderr.strip() or "unknown"
+        output = result.stdout.strip() or result.stderr.strip() or "unknown"
+        return output.splitlines()[0]
     except (FileNotFoundError, subprocess.TimeoutExpired):
         return "not found"
 
@@ -76,7 +77,7 @@ def run_fuzz(
             log.error("Generator %s failed: %s", gen, e)
             if verbose:
                 print(f"  ERROR: {e}", file=sys.stderr)
-            generator_counts[gen] = {"total": 0, "error": str(e)}
+            generator_counts[gen] = {"total": 0, "error": 1, "error_msg": str(e)}
             continue
 
         if verbose:
