@@ -110,7 +110,7 @@ def _run_sim(
     if sim == "ryusim":
         env_vars["EXTRA_ARGS"] = "--trace-vcd"
     elif sim == "verilator":
-        env_vars["EXTRA_ARGS"] = "--trace"
+        env_vars["EXTRA_ARGS"] = "--trace -Wno-fatal"
 
     try:
         result = subprocess.run(

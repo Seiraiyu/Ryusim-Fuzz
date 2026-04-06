@@ -4,6 +4,32 @@ ARG REMOTE_USER=vscode
 ARG REMOTE_UID=1000
 ARG REMOTE_GID=1000
 
+# Build Verilator from source (cocotb requires >= 5.036)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        autoconf flex bison ccache g++ git help2man libfl2 libfl-dev \
+        make perl python3 zlib1g-dev && \
+    git clone --depth 1 --branch v5.042 \
+        https://github.com/verilator/verilator /tmp/verilator && \
+    cd /tmp/verilator && \
+    autoconf && \
+    ./configure --prefix=/usr/local && \
+    make -j"$(nproc)" && \
+    make install && \
+    rm -rf /tmp/verilator
+
+# Build Icarus Verilog from source
+RUN apt-get install -y --no-install-recommends \
+        autoconf bison flex g++ gperf && \
+    git clone --depth 1 --branch v13_0 \
+        https://github.com/steveicarus/iverilog /tmp/iverilog && \
+    cd /tmp/iverilog && \
+    sh autoconf.sh && \
+    ./configure --prefix=/usr/local && \
+    make -j"$(nproc)" && \
+    make install && \
+    rm -rf /tmp/iverilog && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Remove existing user/group with conflicting IDs
 RUN if getent passwd ${REMOTE_UID} >/dev/null 2>&1; then \
         existing_user=$(getent passwd ${REMOTE_UID} | cut -d: -f1); \

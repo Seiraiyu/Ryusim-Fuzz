@@ -9,7 +9,7 @@ from pathlib import Path
 
 log = logging.getLogger(__name__)
 
-# Patterns that indicate unsupported RyuSim constructs
+# Patterns that indicate unsupported or non-synthesizable constructs
 UNSUPPORTED_PATTERNS = [
     re.compile(r"\binitial\b"),
     re.compile(r"#\s*\d+"),                # # delays
@@ -21,6 +21,21 @@ UNSUPPORTED_PATTERNS = [
     re.compile(r"\bjoin\b"),
     re.compile(r"\bjoin_any\b"),
     re.compile(r"\bjoin_none\b"),
+    # Exotic net types that simulators reject
+    re.compile(r"\bsupply0\b"),
+    re.compile(r"\bsupply1\b"),
+    re.compile(r"\btri0\b"),
+    re.compile(r"\btri1\b"),
+    re.compile(r"\buwire\b"),
+    re.compile(r"\bwor\b"),
+    re.compile(r"\bwand\b"),
+    re.compile(r"\binout\b"),
+    re.compile(r"\breal\b"),
+    # Contradictory port declarations (e.g. "output wire input reg")
+    re.compile(r"\boutput\s+\w+\s+input\b"),
+    re.compile(r"\binput\s+\w+\s+input\b"),
+    # Hierarchical assigns (e.g. "assign modCall_1.id_3 = 0")
+    re.compile(r"\bassign\s+\w+\.\s*\w+"),
 ]
 
 
@@ -152,10 +167,10 @@ def generate_vloghammer(
     # Generate into VlogHammer's rtl/ directory then copy out
     rtl_dir.mkdir(parents=True, exist_ok=True)
 
-    # Run the generator
+    # Run the generator (use resolved absolute path so it works regardless of cwd)
     try:
         subprocess.run(
-            [str(gen_bin)],
+            [str(gen_bin.resolve())],
             cwd=str(vloghammer_dir),
             capture_output=True,
             text=True,

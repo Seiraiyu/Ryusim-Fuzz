@@ -1,0 +1,60 @@
+Error: Build failed
+gmake[2]: Entering directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+gmake[3]: Entering directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+[ 25%] Building CXX object CMakeFiles/expression_00003_modules_0.dir/expression_00003.cpp.o
+[ 25%] Building CXX object CMakeFiles/expression_00003_modules_0.dir/sim_loop.cpp.o
+[ 37%] Building CXX object CMakeFiles/expression_00003_modules_0.dir/design_metadata.cpp.o
+[ 50%] Building CXX object CMakeFiles/expression_00003_modules_0.dir/vpi_api.cpp.o
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:84: error: expected expression
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                    ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:188: error: taking the address of a temporary object of type 'Value4' [-Waddress-of-temporary]
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                                                                                                                            ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:187: error: invalid argument type 'Value4 *' to unary expression
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                                                                                                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:281: error: expected ')'
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                                                                                                                                                                                                                         ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:280: note: to match this '('
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                                                                                                                                                                                                                        ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:286: error: expected ')'
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                                                                                                                                                                                                                              ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:267: note: to match this '('
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                                                                                                                                                                                                           ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:23:316: error: expected expression
+   23 |     y1_ = (core::sv_reduce_nand(core::Value4::concat({core::Logic4((core::Logic4((~|(core::Logic4(a5_.signed_greater_than(b5_)))).zero_extend(4).case_neq((b0_ >> b4_))))), core::Logic4((~&(core::Value4(5, 2).pow(core::Logic4(core::Value4(6, 0x2aULL) >= b2_))))), ((^(core::Value4(4, 2).pow(core::Value4(5, 0x0ULL)))) >> core::Logic4(b1_ == b3_.sign_extend(5)))}))).zero_extend(5);
+      |                                                                                                                                                                                                                                                                                                                            ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:59:336: error: expected expression
+   59 |     y10_ = core::Logic4(core::Value4::concat({core::Value4(6, 1), (core::Value4(6, 0x1fULL) << a5_), core::Logic4((core::sv_reduce_nand(core::Logic4(core::Value4(6, 0x1ULL) != core::Value4(6, 0x1fULL)))))}) >= (core::sv_reduce_xor((-core::Value4::concat({core::Value4::concat({(~b1_), core::Value4::concat({a5_, a1_})}), core::Logic4((|a4_) <= core::Logic4(core::Value4(4, 0b0ULL) == core::Value4(4, 0b0ULL)))})))).zero_extend(13)).zero_extend(5);
+      |                                                                                                                                                                                                                                                                                                                                                ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:63:70: error: expected a class name after '~' to name a destructor
+   63 |     y11_ = ((a1_ & core::Value4(4, 0b0ULL).zero_extend(5)) ? (core::~(Value4(4, 0b0ULL).zero_extend(6) ^ __zext(core::Value4(4, 0b0ULL), 6))) : core::Logic4(b0_.zero_extend(6) != core::Value4(6, 0x1ULL)).zero_extend(6));
+      |                                                                      ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:63:71: error: use of undeclared identifier 'Value4'; did you mean 'core::Value4'?
+   63 |     y11_ = ((a1_ & core::Value4(4, 0b0ULL).zero_extend(5)) ? (core::~(Value4(4, 0b0ULL).zero_extend(6) ^ __zext(core::Value4(4, 0b0ULL), 6))) : core::Logic4(b0_.zero_extend(6) != core::Value4(6, 0x1ULL)).zero_extend(6));
+      |                                                                       ^
+/opt/ryusim/include/ryusim/core/value4.hpp:40:7: note: 'core::Value4' declared here
+   40 | class Value4 {
+      |       ^
+/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/expression_00003.cpp:79:78: error: invalid argument type 'core::Value4 *' to unary expression
+   79 |     y15_ = core::Value4::concat({core::Value4::concat({(core::sv_reduce_nor((~&b0_))), core::Value4::concat({core::Value4(4, 0b1ULL), core::Value4(4, 0b0ULL)})}), (core::sv_reduce_nand(core::Value4(4, 0b1ULL).replicate(3).replicate(2)))});
+      |                                                                              ^~~~~
+10 errors generated.
+gmake[4]: *** [CMakeFiles/expression_00003_modules_0.dir/build.make:76: CMakeFiles/expression_00003_modules_0.dir/expression_00003.cpp.o] Error 1
+gmake[4]: *** Waiting for unfinished jobs....
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+gmake[3]: *** [CMakeFiles/Makefile2:87: CMakeFiles/expression_00003_modules_0.dir/all] Error 2
+gmake[3]: Leaving directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+gmake[2]: *** [Makefile:91: all] Error 2
+gmake[2]: Leaving directory '/tmp/ryusim_fuzz_ryusim_zcxdm6k1/sim_build/build'
+
+make[1]: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/simulators/Makefile.ryusim:53: sim_build/libexpression_00003.so] Error 1
+make: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/Makefile.inc:17: sim] Error 2

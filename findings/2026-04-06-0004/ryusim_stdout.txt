@@ -1,0 +1,68 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/tmp/ryusim_fuzz_ryusim_e217iwlc'
+mkdir -p sim_build
+/usr/local/bin/ryusim compile --top expression_00000 -o sim_build --trace-vcd --trace-vcd  /tmp/ryusim_fuzz_ryusim_e217iwlc/vloghammer_0000.v
+RyuSim - Compiling 1 source file(s)
+  Top module: expression_00000
+  Output directory: sim_build
+  Optimization level: 1
+
+[1/4] Parsing SystemVerilog...
+  Parse successful!
+
+[2/4] Converting to IR...
+  IR conversion successful! Found 1 module(s)
+
+[3/4] Generating C++ simulation code...
+
+[4/4] Building simulation executable (8 parallel jobs)...
+-- The CXX compiler identification is Clang 18.1.3
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build
+gmake[2]: Entering directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+gmake[3]: Entering directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+[ 25%] Building CXX object CMakeFiles/expression_00000_modules_0.dir/design_metadata.cpp.o
+[ 25%] Building CXX object CMakeFiles/expression_00000_modules_0.dir/expression_00000.cpp.o
+[ 37%] Building CXX object CMakeFiles/expression_00000_modules_0.dir/vpi_api.cpp.o
+[ 50%] Building CXX object CMakeFiles/expression_00000_modules_0.dir/sim_loop.cpp.o
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:19:159: error: taking the address of a temporary object of type 'core::Value4' [-Waddress-of-temporary]
+   19 |     y0_ = ((-(b5_.is_one() ? core::Value4(5, -0x6ULL) : core::Value4(4, 0b10ULL).zero_extend(5))) ? core::Logic4(true).zero_extend(4) : (core::sv_reduce_nor((&(a3_ ? a4_ : core::Value4(5, 0x6ULL))))).zero_extend(4));
+      |                                                                                                                                                               ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:47:27: warning: '$' in identifier [-Wdollar-in-identifier-extension]
+   47 |     y7_ = (+(core::Logic4($unsigned(b0_) >= __zext(((a0_ >> core::Value4(5, 0x2ULL))), 4)) ^ (-($signed((a2_ !== __zext(a0_, 6))) __slt $unsigned(core::Logic4(b0_ && a1_)))))).zero_extend(5);
+      |                           ^
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:47:27: error: use of undeclared identifier '$unsigned'; did you mean 'unsigned'?
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:47:97: warning: '$' in identifier [-Wdollar-in-identifier-extension]
+   47 |     y7_ = (+(core::Logic4($unsigned(b0_) >= __zext(((a0_ >> core::Value4(5, 0x2ULL))), 4)) ^ (-($signed((a2_ !== __zext(a0_, 6))) __slt $unsigned(core::Logic4(b0_ && a1_)))))).zero_extend(5);
+      |                                                                                                 ^
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:47:112: error: expected expression
+   47 |     y7_ = (+(core::Logic4($unsigned(b0_) >= __zext(((a0_ >> core::Value4(5, 0x2ULL))), 4)) ^ (-($signed((a2_ !== __zext(a0_, 6))) __slt $unsigned(core::Logic4(b0_ && a1_)))))).zero_extend(5);
+      |                                                                                                                ^
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:47:137: warning: '$' in identifier [-Wdollar-in-identifier-extension]
+   47 |     y7_ = (+(core::Logic4($unsigned(b0_) >= __zext(((a0_ >> core::Value4(5, 0x2ULL))), 4)) ^ (-($signed((a2_ !== __zext(a0_, 6))) __slt $unsigned(core::Logic4(b0_ && a1_)))))).zero_extend(5);
+      |                                                                                                                                         ^
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:51:100: error: taking the address of a temporary object of type 'Value4' [-Waddress-of-temporary]
+   51 |     y8_ = ((~(+(-((b5_ << b3_))))) ? (+core::Logic4(true).zero_extend(6)) : (core::sv_reduce_or((!(&(b2_ & a3_.sign_extend(6)))))).zero_extend(6));
+      |                                                                                                    ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/expression_00000.cpp:55:35: warning: address of 'this->b1_' will always evaluate to 'true' [-Wpointer-bool-conversion]
+   55 |     y9_ = ((core::sv_reduce_nor((&b1_))).zero_extend(6) ^ (core::Value4(6, 0x1ULL) | core::Value4(6, 0x2dULL))).replicate(2);
+      |             ~~~~                  ^~~
+4 warnings and 4 errors generated.
+gmake[4]: *** [CMakeFiles/expression_00000_modules_0.dir/build.make:76: CMakeFiles/expression_00000_modules_0.dir/expression_00000.cpp.o] Error 1
+gmake[4]: *** Waiting for unfinished jobs....
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+gmake[3]: *** [CMakeFiles/Makefile2:87: CMakeFiles/expression_00000_modules_0.dir/all] Error 2
+gmake[3]: Leaving directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+gmake[2]: *** [Makefile:91: all] Error 2
+gmake[2]: Leaving directory '/tmp/ryusim_fuzz_ryusim_e217iwlc/sim_build/build'
+make[1]: Leaving directory '/tmp/ryusim_fuzz_ryusim_e217iwlc'

@@ -1,0 +1,45 @@
+Error: Build failed
+gmake[2]: Entering directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+gmake[3]: Entering directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+[ 37%] Building CXX object CMakeFiles/expression_00004_modules_0.dir/vpi_api.cpp.o
+[ 37%] Building CXX object CMakeFiles/expression_00004_modules_0.dir/design_metadata.cpp.o
+[ 37%] Building CXX object CMakeFiles/expression_00004_modules_0.dir/expression_00004.cpp.o
+[ 50%] Building CXX object CMakeFiles/expression_00004_modules_0.dir/sim_loop.cpp.o
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:19:81: error: expected ')'
+   19 |     y0_ = (core::Value4(10, 30) << (core::Value4::concat({a0_, core::Logic4( a3_}).case_neq((a5_.sign_extend(8) << a1_)))));
+      |                                                                                 ^
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:19:76: note: to match this '('
+   19 |     y0_ = (core::Value4(10, 30) << (core::Value4::concat({a0_, core::Logic4( a3_}).case_neq((a5_.sign_extend(8) << a1_)))));
+      |                                                                            ^
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:19:123: error: extraneous ')' before ';'
+   19 |     y0_ = (core::Value4(10, 30) << (core::Value4::concat({a0_, core::Logic4( a3_}).case_neq((a5_.sign_extend(8) << a1_)))));
+      |                                                                                                                           ^
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:35:62: error: expected ')'
+   35 |     y4_ = core::Logic4((core::sv_reduce_nand((^(core::Value4(4, 0b0ULL) & a3_)))) <= ((core::sv_reduce_or(core::Value4(4, 0b0ULL))) << (!a4_))).zero_extend(5);
+      |                                                              ^
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:35:61: note: to match this '('
+   35 |     y4_ = core::Logic4((core::sv_reduce_nand((^(core::Value4(4, 0b0ULL) & a3_)))) <= ((core::sv_reduce_or(core::Value4(4, 0b0ULL))) << (!a4_))).zero_extend(5);
+      |                                                             ^
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:35:73: error: expected ')'
+   35 |     y4_ = core::Logic4((core::sv_reduce_nand((^(core::Value4(4, 0b0ULL) & a3_)))) <= ((core::sv_reduce_or(core::Value4(4, 0b0ULL))) << (!a4_))).zero_extend(5);
+      |                                                                         ^
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:35:48: note: to match this '('
+   35 |     y4_ = core::Logic4((core::sv_reduce_nand((^(core::Value4(4, 0b0ULL) & a3_)))) <= ((core::sv_reduce_or(core::Value4(4, 0b0ULL))) << (!a4_))).zero_extend(5);
+      |                                                ^
+/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/expression_00004.cpp:35:79: error: expected expression
+   35 |     y4_ = core::Logic4((core::sv_reduce_nand((^(core::Value4(4, 0b0ULL) & a3_)))) <= ((core::sv_reduce_or(core::Value4(4, 0b0ULL))) << (!a4_))).zero_extend(5);
+      |                                                                               ^
+5 errors generated.
+gmake[4]: *** [CMakeFiles/expression_00004_modules_0.dir/build.make:76: CMakeFiles/expression_00004_modules_0.dir/expression_00004.cpp.o] Error 1
+gmake[4]: *** Waiting for unfinished jobs....
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+gmake[3]: *** [CMakeFiles/Makefile2:87: CMakeFiles/expression_00004_modules_0.dir/all] Error 2
+gmake[3]: Leaving directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+gmake[2]: *** [Makefile:91: all] Error 2
+gmake[2]: Leaving directory '/tmp/ryusim_fuzz_ryusim_t2zlmtoj/sim_build/build'
+
+make[1]: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/simulators/Makefile.ryusim:53: sim_build/libexpression_00004.so] Error 1
+make: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/Makefile.inc:17: sim] Error 2

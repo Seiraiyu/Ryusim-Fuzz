@@ -148,7 +148,19 @@ def compare_results(
             sim_results=by_sim,
         )
 
-    # Ambiguous cases
+    # RyuSim failed, one reference OK, one reference failed
+    if not r_ok and (v_ok or i_ok):
+        working_ref = "Verilator" if v_ok else "Iverilog"
+        failed_ref = "Verilator" if not v_ok else "Iverilog"
+        classification = RYUSIM_CRASH if ryusim.exit_code < 0 else RYUSIM_PARSE_REJECT
+        return CompareResult(
+            design=design,
+            classification=classification,
+            details=f"RyuSim failed (exit {ryusim.exit_code}), {working_ref} succeeded, {failed_ref} also failed",
+            sim_results=by_sim,
+        )
+
+    # Ambiguous cases (all references failed too, but not all_reject already handled)
     if not r_ok:
         return CompareResult(
             design=design,

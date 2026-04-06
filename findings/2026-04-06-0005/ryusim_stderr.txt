@@ -1,0 +1,73 @@
+Error: Build failed
+gmake[2]: Entering directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+gmake[3]: Entering directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+[ 12%] Building CXX object CMakeFiles/expression_00001_modules_0.dir/expression_00001.cpp.o
+[ 25%] Building CXX object CMakeFiles/expression_00001_modules_0.dir/sim_loop.cpp.o
+[ 50%] Building CXX object CMakeFiles/expression_00001_modules_0.dir/design_metadata.cpp.o
+[ 50%] Building CXX object CMakeFiles/expression_00001_modules_0.dir/vpi_api.cpp.o
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:23:57: error: expected expression
+   23 |     y1_ = core::Value4::concat({((core::sv_reduce_xnor((|(core::Logic4(b3_.sign_extend(5).signed_less_equal(core::Value4(5, 0x3ULL))))))).zero_extend(2) & core::Value4::concat({(core::sv_reduce_xnor(a0_)), (core::Logic4(b3_.sign_extend(5).signed_greater_than(a4_)))})), (-core::Value4(3, 3))});
+      |                                                         ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:27:183: error: expected ')'
+   27 |     y2_ = core::Value4::concat({core::Value4::concat({(core::sv_reduce_and((~a0_))), core::Value4::concat({a5_, core::Value4(4, 0b0ULL), b5_}), (core::sv_reduce_xnor((~^core::Value4(5, 0x0ULL))))}), (-(core::sv_reduce_nor(core::Value4::concat({(|b5_), core::Logic4((!a1_)), (~^a4_)}))))});
+      |                                                                                                                                                                                       ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:27:182: note: to match this '('
+   27 |     y2_ = core::Value4::concat({core::Value4::concat({(core::sv_reduce_and((~a0_))), core::Value4::concat({a5_, core::Value4(4, 0b0ULL), b5_}), (core::sv_reduce_xnor((~^core::Value4(5, 0x0ULL))))}), (-(core::sv_reduce_nor(core::Value4::concat({(|b5_), core::Logic4((!a1_)), (~^a4_)}))))});
+      |                                                                                                                                                                                      ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:27:193: error: expected expression
+   27 |     y2_ = core::Value4::concat({core::Value4::concat({(core::sv_reduce_and((~a0_))), core::Value4::concat({a5_, core::Value4(4, 0b0ULL), b5_}), (core::sv_reduce_xnor((~^core::Value4(5, 0x0ULL))))}), (-(core::sv_reduce_nor(core::Value4::concat({(|b5_), core::Logic4((!a1_)), (~^a4_)}))))});
+      |                                                                                                                                                                                                 ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:27:246: error: expected expression
+   27 |     y2_ = core::Value4::concat({core::Value4::concat({(core::sv_reduce_and((~a0_))), core::Value4::concat({a5_, core::Value4(4, 0b0ULL), b5_}), (core::sv_reduce_xnor((~^core::Value4(5, 0x0ULL))))}), (-(core::sv_reduce_nor(core::Value4::concat({(|b5_), core::Logic4((!a1_)), (~^a4_)}))))});
+      |                                                                                                                                                                                                                                                      ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:27:278: error: unknown type name 'a4_'
+   27 |     y2_ = core::Value4::concat({core::Value4::concat({(core::sv_reduce_and((~a0_))), core::Value4::concat({a5_, core::Value4(4, 0b0ULL), b5_}), (core::sv_reduce_xnor((~^core::Value4(5, 0x0ULL))))}), (-(core::sv_reduce_nor(core::Value4::concat({(|b5_), core::Logic4((!a1_)), (~^a4_)}))))});
+      |                                                                                                                                                                                                                                                                                      ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:27:281: error: expected expression
+   27 |     y2_ = core::Value4::concat({core::Value4::concat({(core::sv_reduce_and((~a0_))), core::Value4::concat({a5_, core::Value4(4, 0b0ULL), b5_}), (core::sv_reduce_xnor((~^core::Value4(5, 0x0ULL))))}), (-(core::sv_reduce_nor(core::Value4::concat({(|b5_), core::Logic4((!a1_)), (~^a4_)}))))});
+      |                                                                                                                                                                                                                                                                                         ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:31:60: error: unknown type name 'b5_'
+   31 |     y3_ = (core::sv_reduce_xor(((core::Value4(6, 2).pow((~^b5_))) | (+(!b0_.replicate(4).replicate(2)).zero_extend(6))))).zero_extend(4);
+      |                                                            ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:31:63: error: expected expression
+   31 |     y3_ = (core::sv_reduce_xor(((core::Value4(6, 2).pow((~^b5_))) | (+(!b0_.replicate(4).replicate(2)).zero_extend(6))))).zero_extend(4);
+      |                                                               ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:55:164: error: no member named 'core' in namespace 'ryusim::core'; did you mean simply 'core'?
+   55 |     y9_ = ((a5_.is_one() ? a1_.zero_extend(6) : a2_).replicate(4) ? (core::Logic4(a2_ || b1_) ? (b1_.zero_extend(12) - b3_.sign_extend(12)) : b0_.replicate(3)) : (core::core::Logic4(Logic4(a2_ <= b4_.sign_extend(6)).zero_extend(5).case_eq((a5_ ? a3_.sign_extend(5) : a1_)))).zero_extend(12));
+      |                                                                                                                                                                    ^~~~~~~~~~
+      |                                                                                                                                                                    core
+/opt/ryusim/include/ryusim/core/value4.hpp:32:19: note: 'core' declared here
+   32 | namespace ryusim::core {
+      |                   ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:55:183: error: use of undeclared identifier 'Logic4'; did you mean 'core::Logic4'?
+   55 |     y9_ = ((a5_.is_one() ? a1_.zero_extend(6) : a2_).replicate(4) ? (core::Logic4(a2_ || b1_) ? (b1_.zero_extend(12) - b3_.sign_extend(12)) : b0_.replicate(3)) : (core::core::Logic4(Logic4(a2_ <= b4_.sign_extend(6)).zero_extend(5).case_eq((a5_ ? a3_.sign_extend(5) : a1_)))).zero_extend(12));
+      |                                                                                                                                                                                       ^
+/opt/ryusim/include/ryusim/core/logic4.hpp:49:7: note: 'core::Logic4' declared here
+   49 | class Logic4 {
+      |       ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:63:65: error: type-id cannot have a name
+   63 |     y11_ = (+(core::sv_reduce_xnor((core::Value4(6, 2).pow((~^(&a0_)))))).zero_extend(6));
+      |                                                                 ^~~
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:63:62: error: a type specifier is required for all declarations
+   63 |     y11_ = (+(core::sv_reduce_xnor((core::Value4(6, 2).pow((~^(&a0_)))))).zero_extend(6));
+      |                                                              ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:63:69: error: expected expression
+   63 |     y11_ = (+(core::sv_reduce_xnor((core::Value4(6, 2).pow((~^(&a0_)))))).zero_extend(6));
+      |                                                                     ^
+/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/expression_00001.cpp:67:58: error: expected expression
+   67 |     y12_ = (core::sv_reduce_or((~&core::Value4::concat({(|(!a0_)), core::Logic4((core::Logic4(b3_.sign_extend(6).case_neq(a2_))))}).replicate(2)))).zero_extend(4);
+      |                                                          ^
+14 errors generated.
+gmake[4]: *** [CMakeFiles/expression_00001_modules_0.dir/build.make:76: CMakeFiles/expression_00001_modules_0.dir/expression_00001.cpp.o] Error 1
+gmake[4]: *** Waiting for unfinished jobs....
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+gmake[3]: *** [CMakeFiles/Makefile2:87: CMakeFiles/expression_00001_modules_0.dir/all] Error 2
+gmake[3]: Leaving directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+gmake[2]: *** [Makefile:91: all] Error 2
+gmake[2]: Leaving directory '/tmp/ryusim_fuzz_ryusim_lj6o27jq/sim_build/build'
+
+make[1]: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/simulators/Makefile.ryusim:53: sim_build/libexpression_00001.so] Error 1
+make: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/Makefile.inc:17: sim] Error 2

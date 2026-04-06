@@ -1,0 +1,58 @@
+Error: Build failed
+gmake[2]: Entering directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+gmake[3]: Entering directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+gmake[4]: Entering directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+[ 25%] Building CXX object CMakeFiles/expression_00002_modules_0.dir/expression_00002.cpp.o
+[ 25%] Building CXX object CMakeFiles/expression_00002_modules_0.dir/design_metadata.cpp.o
+[ 37%] Building CXX object CMakeFiles/expression_00002_modules_0.dir/vpi_api.cpp.o
+[ 50%] Building CXX object CMakeFiles/expression_00002_modules_0.dir/sim_loop.cpp.o
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:19:25: error: no member named 'core' in namespace 'ryusim::core'; did you mean simply 'core'?
+   19 |     y0_ = core::Logic4((core::core::Logic4(Value4(4, 15).zero_extend(16).case_eq((b3_.replicate(4) >> core::Logic4(a4_ == a1_))))).zero_extend(3) != (core::Logic4(core::Value4(4, -0b1ULL).sign_extend(6).signed_less_equal(core::Value4(6, 0x1ULL)))).replicate(3)).zero_extend(4);
+      |                         ^~~~~~~~~~
+      |                         core
+/opt/ryusim/include/ryusim/core/value4.hpp:32:19: note: 'core' declared here
+   32 | namespace ryusim::core {
+      |                   ^
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:19:44: error: use of undeclared identifier 'Value4'; did you mean 'core::Value4'?
+   19 |     y0_ = core::Logic4((core::core::Logic4(Value4(4, 15).zero_extend(16).case_eq((b3_.replicate(4) >> core::Logic4(a4_ == a1_))))).zero_extend(3) != (core::Logic4(core::Value4(4, -0b1ULL).sign_extend(6).signed_less_equal(core::Value4(6, 0x1ULL)))).replicate(3)).zero_extend(4);
+      |                                            ^
+/opt/ryusim/include/ryusim/core/value4.hpp:40:7: note: 'core::Value4' declared here
+   40 | class Value4 {
+      |       ^
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:35:34: warning: '$' in identifier [-Wdollar-in-identifier-extension]
+   35 |     y4_ = (core::sv_reduce_and((^$unsigned((+$signed($signed(a1_))))))).zero_extend(5);
+      |                                  ^
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:35:34: error: type name requires a specifier or qualifier
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:35:34: error: expected expression
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:35:46: warning: '$' in identifier [-Wdollar-in-identifier-extension]
+   35 |     y4_ = (core::sv_reduce_and((^$unsigned((+$signed($signed(a1_))))))).zero_extend(5);
+      |                                              ^
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:35:54: warning: '$' in identifier [-Wdollar-in-identifier-extension]
+   35 |     y4_ = (core::sv_reduce_and((^$unsigned((+$signed($signed(a1_))))))).zero_extend(5);
+      |                                                      ^
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:51:15: error: no member named 'core' in namespace 'ryusim::core'; did you mean simply 'core'?
+   51 |     y8_ = ((!(core::core::Logic4(Logic4((b1_.zero_extend(6) - a5_) && (core::Logic4(a1_.case_neq(b0_.zero_extend(5))))) == (core::sv_reduce_or((b1_ & b1_)))))).zero_extend(6) << core::Logic4((core::sv_reduce_xor((!(a0_ << core::Value4(4, 0b1ULL))))) >= (core::Logic4((a4_.sign_extend(6) ^ a5_).case_neq((core::Logic4(b5_.case_neq(b5_))).zero_extend(6))))));
+      |               ^~~~~~~~~~
+      |               core
+/opt/ryusim/include/ryusim/core/value4.hpp:32:19: note: 'core' declared here
+   32 | namespace ryusim::core {
+      |                   ^
+/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/expression_00002.cpp:51:34: error: use of undeclared identifier 'Logic4'; did you mean 'core::Logic4'?
+   51 |     y8_ = ((!(core::core::Logic4(Logic4((b1_.zero_extend(6) - a5_) && (core::Logic4(a1_.case_neq(b0_.zero_extend(5))))) == (core::sv_reduce_or((b1_ & b1_)))))).zero_extend(6) << core::Logic4((core::sv_reduce_xor((!(a0_ << core::Value4(4, 0b1ULL))))) >= (core::Logic4((a4_.sign_extend(6) ^ a5_).case_neq((core::Logic4(b5_.case_neq(b5_))).zero_extend(6))))));
+      |                                  ^
+/opt/ryusim/include/ryusim/core/logic4.hpp:49:7: note: 'core::Logic4' declared here
+   49 | class Logic4 {
+      |       ^
+3 warnings and 6 errors generated.
+gmake[4]: *** [CMakeFiles/expression_00002_modules_0.dir/build.make:76: CMakeFiles/expression_00002_modules_0.dir/expression_00002.cpp.o] Error 1
+gmake[4]: *** Waiting for unfinished jobs....
+gmake[4]: Leaving directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+gmake[3]: *** [CMakeFiles/Makefile2:87: CMakeFiles/expression_00002_modules_0.dir/all] Error 2
+gmake[3]: Leaving directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+gmake[2]: *** [Makefile:91: all] Error 2
+gmake[2]: Leaving directory '/tmp/ryusim_fuzz_ryusim_2y7dx_g0/sim_build/build'
+
+make[1]: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/simulators/Makefile.ryusim:53: sim_build/libexpression_00002.so] Error 1
+make: *** [/usr/local/lib/python3.12/dist-packages/cocotb_tools/makefiles/Makefile.inc:17: sim] Error 2
