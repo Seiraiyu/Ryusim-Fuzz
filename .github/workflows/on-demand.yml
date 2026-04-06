@@ -31,6 +31,8 @@ on:
 jobs:
   fuzz:
     runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/seiraiyu/ryusim-fuzz:latest
     timeout-minutes: 60
     steps:
       - name: Checkout with submodules
@@ -38,34 +40,35 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Run in devcontainer
-        uses: devcontainers/ci@v0.3
-        with:
-          runCmd: |
-            bash scripts/setup_chimera.sh
-            bash scripts/setup_vloghammer.sh
-            GEN_ARG=""
-            if [ "${{ inputs.generator }}" = "all" ]; then
-              GEN_ARG="--all"
-            else
-              GEN_ARG="--generator ${{ inputs.generator }}"
-            fi
-            SEED_ARG=""
-            if [ -n "${{ inputs.seed }}" ]; then
-              SEED_ARG="--seed ${{ inputs.seed }}"
-            fi
-            ISSUE_ARG=""
-            if [ "${{ inputs.file_issues }}" = "true" ]; then
-              ISSUE_ARG="--file-issues"
-            fi
-            python3 -u run_fuzz.py \
-              $GEN_ARG \
-              --count ${{ inputs.count }} \
-              --cycles ${{ inputs.cycles }} \
-              $SEED_ARG \
-              $ISSUE_ARG \
-              --verbose \
-              --output results/fuzz-ondemand.json
+      - name: Build generators
+        run: |
+          bash scripts/setup_chimera.sh
+          bash scripts/setup_vloghammer.sh
+
+      - name: Run fuzzing
+        run: |
+          GEN_ARG=""
+          if [ "${{ inputs.generator }}" = "all" ]; then
+            GEN_ARG="--all"
+          else
+            GEN_ARG="--generator ${{ inputs.generator }}"
+          fi
+          SEED_ARG=""
+          if [ -n "${{ inputs.seed }}" ]; then
+            SEED_ARG="--seed ${{ inputs.seed }}"
+          fi
+          ISSUE_ARG=""
+          if [ "${{ inputs.file_issues }}" = "true" ]; then
+            ISSUE_ARG="--file-issues"
+          fi
+          python3 -u run_fuzz.py \
+            $GEN_ARG \
+            --count ${{ inputs.count }} \
+            --cycles ${{ inputs.cycles }} \
+            $SEED_ARG \
+            $ISSUE_ARG \
+            --verbose \
+            --output results/fuzz-ondemand.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

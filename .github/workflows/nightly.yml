@@ -17,6 +17,8 @@ on:
 jobs:
   fuzz:
     runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/seiraiyu/ryusim-fuzz:latest
     timeout-minutes: 30
     steps:
       - name: Checkout with submodules
@@ -24,22 +26,23 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Run in devcontainer
-        uses: devcontainers/ci@v0.3
-        with:
-          runCmd: |
-            bash scripts/setup_chimera.sh
-            bash scripts/setup_vloghammer.sh
-            SEED_ARG=""
-            if [ -n "${{ inputs.seed }}" ]; then
-              SEED_ARG="--seed ${{ inputs.seed }}"
-            fi
-            python3 -u run_fuzz.py --all \
-              --count ${{ inputs.count || 100 }} \
-              $SEED_ARG \
-              --file-issues \
-              --verbose \
-              --output results/fuzz-nightly.json
+      - name: Build generators
+        run: |
+          bash scripts/setup_chimera.sh
+          bash scripts/setup_vloghammer.sh
+
+      - name: Run fuzzing
+        run: |
+          SEED_ARG=""
+          if [ -n "${{ inputs.seed }}" ]; then
+            SEED_ARG="--seed ${{ inputs.seed }}"
+          fi
+          python3 -u run_fuzz.py --all \
+            --count ${{ inputs.count || 100 }} \
+            $SEED_ARG \
+            --file-issues \
+            --verbose \
+            --output results/fuzz-nightly.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

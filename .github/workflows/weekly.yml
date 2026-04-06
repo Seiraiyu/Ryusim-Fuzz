@@ -13,6 +13,8 @@ on:
 jobs:
   fuzz:
     runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/seiraiyu/ryusim-fuzz:latest
     timeout-minutes: 120
     steps:
       - name: Checkout with submodules
@@ -20,17 +22,18 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Run in devcontainer
-        uses: devcontainers/ci@v0.3
-        with:
-          runCmd: |
-            bash scripts/setup_chimera.sh
-            bash scripts/setup_vloghammer.sh
-            python3 -u run_fuzz.py --all \
-              --count ${{ inputs.count || 1000 }} \
-              --file-issues \
-              --verbose \
-              --output results/fuzz-weekly.json
+      - name: Build generators
+        run: |
+          bash scripts/setup_chimera.sh
+          bash scripts/setup_vloghammer.sh
+
+      - name: Run deep fuzzing
+        run: |
+          python3 -u run_fuzz.py --all \
+            --count ${{ inputs.count || 1000 }} \
+            --file-issues \
+            --verbose \
+            --output results/fuzz-weekly.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
