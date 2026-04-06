@@ -1,3 +1,6 @@
 [submodule "chimera"]
 	path = chimera
 	url = https://github.com/lac-dcc/chimera.git
+[submodule "vloghammer"]
+	path = vloghammer
+	url = https://github.com/YosysHQ/VlogHammer.git
