@@ -1,0 +1,72 @@
+name: Nightly Fuzz
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "Number of designs per generator"
+        type: number
+        default: 50
+      seed:
+        description: "Random seed (leave empty for random)"
+        type: string
+        default: ""
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake clang g++ verilator iverilog
+
+      - name: Install RyuSim
+        run: bash scripts/setup_ryusim.sh
+
+      - name: Build ChiGen
+        run: bash scripts/setup_chimera.sh
+
+      - name: Build VlogHammer generator
+        run: bash scripts/setup_vloghammer.sh
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run fuzzing
+        run: |
+          SEED_ARG=""
+          if [ -n "${{ inputs.seed }}" ]; then
+            SEED_ARG="--seed ${{ inputs.seed }}"
+          fi
+          python3 -u run_fuzz.py --all \
+            --count ${{ inputs.count || 100 }} \
+            $SEED_ARG \
+            --file-issues \
+            --verbose \
+            --output results/fuzz-nightly.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-fuzz-results
+          path: |
+            results/
+            findings/
+          retention-days: 30
