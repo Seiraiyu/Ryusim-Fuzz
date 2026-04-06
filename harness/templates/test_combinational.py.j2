@@ -1,0 +1,16 @@
+{# harness/templates/test_combinational.py.j2 — Cocotb testbench for combinational designs #}
+"""Auto-generated cocotb testbench for {{ top_module }}."""
+import cocotb
+from cocotb.triggers import Timer
+import random
+
+random.seed({{ random_seed }})
+
+@cocotb.test()
+async def test_generated(dut):
+    """Drive {{ num_vectors }} random input vectors with 10ns settling time."""
+    for _ in range({{ num_vectors }}):
+{% for port in input_ports %}
+        dut.{{ port.name }}.value = random.randint(0, {{ port.max_val }})
+{% endfor %}
+        await Timer(10, units="ns")

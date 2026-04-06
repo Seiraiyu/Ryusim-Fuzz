@@ -1,0 +1,29 @@
+{# harness/templates/test_generated.py.j2 — Generic cocotb testbench for sequential designs #}
+"""Auto-generated cocotb testbench for {{ top_module }}."""
+import cocotb
+from cocotb.clock import Clock
+from cocotb.triggers import RisingEdge
+import random
+
+random.seed({{ random_seed }})
+
+@cocotb.test()
+async def test_generated(dut):
+    """Drive clock + random stimulus for {{ num_cycles }} cycles."""
+    clock = Clock(dut.{{ clock_port }}, 10, units="ns")
+    cocotb.start_soon(clock.start())
+
+{% for port in input_ports %}
+    dut.{{ port.name }}.value = 0
+{% endfor %}
+
+    # Let reset settle
+    for _ in range(5):
+        await RisingEdge(dut.{{ clock_port }})
+
+    # Drive random stimulus
+    for cycle in range({{ num_cycles }}):
+{% for port in input_ports %}
+        dut.{{ port.name }}.value = random.randint(0, {{ port.max_val }})
+{% endfor %}
+        await RisingEdge(dut.{{ clock_port }})
