@@ -26,9 +26,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install --break-system-packages -r /tmp/requirements.txt && rm /tmp/requirements.txt
 
-# Install RyuSim
-RUN curl -fsSL https://ryusim.seiraiyu.com/install.sh | bash || true
-
 # GitHub CLI (for issue filing)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
     | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
